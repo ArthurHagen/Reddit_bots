@@ -1,0 +1,3788 @@
+RedditExtendedWarrantyBot started
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 57, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.7/socket.py", line 748, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 343, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 841, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 301, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x75adee90>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='oauth.reddit.com', port=443): Max retries exceeded with url: /r/all/comments/?before=t1_hjruy08&limit=100&raw_json=1 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x75adee90>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/requestor.py", line 59, in request
+    *args, timeout=timeout or self.timeout, **kwargs
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='oauth.reddit.com', port=443): Max retries exceeded with url: /r/all/comments/?before=t1_hjruy08&limit=100&raw_json=1 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x75adee90>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "RedditExtendedWarrantyBot.py", line 11, in <module>
+    for comments_post in subreddit.stream.comments(skip_existing=True):
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/util.py", line 188, in stream_generator
+    for item in reversed(list(function(limit=limit, **function_kwargs))):
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/listing/generator.py", line 63, in __next__
+    self._next_batch()
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/listing/generator.py", line 73, in _next_batch
+    self._listing = self._reddit.get(self.url, params=self.params)
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 573, in get
+    return self._objectify_request(method="GET", params=params, path=path)
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 680, in _objectify_request
+    path=path,
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 863, in request
+    json=json,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 337, in request
+    url=url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 263, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 170, in _do_retry
+    retry_strategy_state=retry_strategy_state.consume_available_retry(),  # noqa: E501
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 263, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 170, in _do_retry
+    retry_strategy_state=retry_strategy_state.consume_available_retry(),  # noqa: E501
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 236, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 195, in _make_request
+    timeout=timeout,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/rate_limit.py", line 34, in call
+    response = request_function(*args, **kwargs)
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/requestor.py", line 62, in request
+    raise RequestException(exc, args, kwargs)
+prawcore.exceptions.RequestException: error with request HTTPSConnectionPool(host='oauth.reddit.com', port=443): Max retries exceeded with url: /r/all/comments/?before=t1_hjruy08&limit=100&raw_json=1 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x75adee90>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+RedditExtendedWarrantyBot started
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Traceback (most recent call last):
+  File "RedditExtendedWarrantyBot.py", line 11, in <module>
+    for comments_post in subreddit.stream.comments(skip_existing=True):
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/util.py", line 188, in stream_generator
+    for item in reversed(list(function(limit=limit, **function_kwargs))):
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/listing/generator.py", line 63, in __next__
+    self._next_batch()
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/listing/generator.py", line 73, in _next_batch
+    self._listing = self._reddit.get(self.url, params=self.params)
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 573, in get
+    return self._objectify_request(method="GET", params=params, path=path)
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 680, in _objectify_request
+    path=path,
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 863, in request
+    json=json,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 337, in request
+    url=url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 263, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 170, in _do_retry
+    retry_strategy_state=retry_strategy_state.consume_available_retry(),  # noqa: E501
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 263, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 170, in _do_retry
+    retry_strategy_state=retry_strategy_state.consume_available_retry(),  # noqa: E501
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 266, in _request_with_retries
+    raise self.STATUS_EXCEPTIONS[response.status_code](response)
+prawcore.exceptions.ServerError: received 504 HTTP response
+RedditExtendedWarrantyBot started
+Forbidden
+Forbidden
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 57, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.7/socket.py", line 748, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 343, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 841, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 301, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x75aa9af0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='oauth.reddit.com', port=443): Max retries exceeded with url: /r/all/comments/?limit=79&raw_json=1 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x75aa9af0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/requestor.py", line 59, in request
+    *args, timeout=timeout or self.timeout, **kwargs
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='oauth.reddit.com', port=443): Max retries exceeded with url: /r/all/comments/?limit=79&raw_json=1 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x75aa9af0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "RedditExtendedWarrantyBot.py", line 11, in <module>
+    for comments_post in subreddit.stream.comments(skip_existing=True):
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/util.py", line 188, in stream_generator
+    for item in reversed(list(function(limit=limit, **function_kwargs))):
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/listing/generator.py", line 63, in __next__
+    self._next_batch()
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/listing/generator.py", line 73, in _next_batch
+    self._listing = self._reddit.get(self.url, params=self.params)
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 573, in get
+    return self._objectify_request(method="GET", params=params, path=path)
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 680, in _objectify_request
+    path=path,
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 863, in request
+    json=json,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 337, in request
+    url=url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 263, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 170, in _do_retry
+    retry_strategy_state=retry_strategy_state.consume_available_retry(),  # noqa: E501
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 263, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 170, in _do_retry
+    retry_strategy_state=retry_strategy_state.consume_available_retry(),  # noqa: E501
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 236, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 195, in _make_request
+    timeout=timeout,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/rate_limit.py", line 34, in call
+    response = request_function(*args, **kwargs)
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/requestor.py", line 62, in request
+    raise RequestException(exc, args, kwargs)
+prawcore.exceptions.RequestException: error with request HTTPSConnectionPool(host='oauth.reddit.com', port=443): Max retries exceeded with url: /r/all/comments/?limit=79&raw_json=1 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x75aa9af0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+RedditExtendedWarrantyBot started
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 57, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.7/socket.py", line 748, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 343, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 841, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 301, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x75a7e310>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='oauth.reddit.com', port=443): Max retries exceeded with url: /r/all/comments/?before=t1_hk0kxaw&limit=100&raw_json=1 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x75a7e310>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/requestor.py", line 59, in request
+    *args, timeout=timeout or self.timeout, **kwargs
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='oauth.reddit.com', port=443): Max retries exceeded with url: /r/all/comments/?before=t1_hk0kxaw&limit=100&raw_json=1 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x75a7e310>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "RedditExtendedWarrantyBot.py", line 11, in <module>
+    for comments_post in subreddit.stream.comments(skip_existing=True):
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/util.py", line 188, in stream_generator
+    for item in reversed(list(function(limit=limit, **function_kwargs))):
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/listing/generator.py", line 63, in __next__
+    self._next_batch()
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/listing/generator.py", line 73, in _next_batch
+    self._listing = self._reddit.get(self.url, params=self.params)
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 573, in get
+    return self._objectify_request(method="GET", params=params, path=path)
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 680, in _objectify_request
+    path=path,
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 863, in request
+    json=json,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 337, in request
+    url=url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 263, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 170, in _do_retry
+    retry_strategy_state=retry_strategy_state.consume_available_retry(),  # noqa: E501
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 263, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 170, in _do_retry
+    retry_strategy_state=retry_strategy_state.consume_available_retry(),  # noqa: E501
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 236, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 195, in _make_request
+    timeout=timeout,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/rate_limit.py", line 34, in call
+    response = request_function(*args, **kwargs)
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/requestor.py", line 62, in request
+    raise RequestException(exc, args, kwargs)
+prawcore.exceptions.RequestException: error with request HTTPSConnectionPool(host='oauth.reddit.com', port=443): Max retries exceeded with url: /r/all/comments/?before=t1_hk0kxaw&limit=100&raw_json=1 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x75a7e310>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+RedditExtendedWarrantyBot started
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 57, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.7/socket.py", line 748, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 343, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 841, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 301, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x75ae09d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='oauth.reddit.com', port=443): Max retries exceeded with url: /r/all/comments/?before=t1_hk2q6v4&limit=100&raw_json=1 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x75ae09d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/requestor.py", line 59, in request
+    *args, timeout=timeout or self.timeout, **kwargs
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='oauth.reddit.com', port=443): Max retries exceeded with url: /r/all/comments/?before=t1_hk2q6v4&limit=100&raw_json=1 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x75ae09d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "RedditExtendedWarrantyBot.py", line 11, in <module>
+    for comments_post in subreddit.stream.comments(skip_existing=True):
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/util.py", line 188, in stream_generator
+    for item in reversed(list(function(limit=limit, **function_kwargs))):
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/listing/generator.py", line 63, in __next__
+    self._next_batch()
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/listing/generator.py", line 73, in _next_batch
+    self._listing = self._reddit.get(self.url, params=self.params)
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 573, in get
+    return self._objectify_request(method="GET", params=params, path=path)
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 680, in _objectify_request
+    path=path,
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 863, in request
+    json=json,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 337, in request
+    url=url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 263, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 170, in _do_retry
+    retry_strategy_state=retry_strategy_state.consume_available_retry(),  # noqa: E501
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 263, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 170, in _do_retry
+    retry_strategy_state=retry_strategy_state.consume_available_retry(),  # noqa: E501
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 236, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 195, in _make_request
+    timeout=timeout,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/rate_limit.py", line 34, in call
+    response = request_function(*args, **kwargs)
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/requestor.py", line 62, in request
+    raise RequestException(exc, args, kwargs)
+prawcore.exceptions.RequestException: error with request HTTPSConnectionPool(host='oauth.reddit.com', port=443): Max retries exceeded with url: /r/all/comments/?before=t1_hk2q6v4&limit=100&raw_json=1 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x75ae09d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+RedditExtendedWarrantyBot started
+Forbidden
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 384, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 380, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.7/http/client.py", line 1352, in getresponse
+    response.begin()
+  File "/usr/lib/python3.7/http/client.py", line 310, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.7/http/client.py", line 271, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.7/socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.7/ssl.py", line 1052, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.7/ssl.py", line 911, in read
+    return self._sslobj.read(len, buffer)
+socket.timeout: The read operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 367, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/usr/lib/python3/dist-packages/six.py", line 693, in reraise
+    raise value
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 386, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 306, in _raise_timeout
+    raise ReadTimeoutError(self, url, "Read timed out. (read timeout=%s)" % timeout_value)
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='oauth.reddit.com', port=443): Read timed out. (read timeout=5)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/requestor.py", line 59, in request
+    *args, timeout=timeout or self.timeout, **kwargs
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 529, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='oauth.reddit.com', port=443): Read timed out. (read timeout=5)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "RedditExtendedWarrantyBot.py", line 11, in <module>
+    for comments_post in subreddit.stream.comments(skip_existing=True):
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/util.py", line 188, in stream_generator
+    for item in reversed(list(function(limit=limit, **function_kwargs))):
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/listing/generator.py", line 63, in __next__
+    self._next_batch()
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/listing/generator.py", line 73, in _next_batch
+    self._listing = self._reddit.get(self.url, params=self.params)
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 573, in get
+    return self._objectify_request(method="GET", params=params, path=path)
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 680, in _objectify_request
+    path=path,
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 863, in request
+    json=json,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 337, in request
+    url=url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 263, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 170, in _do_retry
+    retry_strategy_state=retry_strategy_state.consume_available_retry(),  # noqa: E501
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 263, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 170, in _do_retry
+    retry_strategy_state=retry_strategy_state.consume_available_retry(),  # noqa: E501
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 236, in _request_with_retries
+    url,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/sessions.py", line 195, in _make_request
+    timeout=timeout,
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/rate_limit.py", line 34, in call
+    response = request_function(*args, **kwargs)
+  File "/home/pi/.local/lib/python3.7/site-packages/prawcore/requestor.py", line 62, in request
+    raise RequestException(exc, args, kwargs)
+prawcore.exceptions.RequestException: error with request HTTPSConnectionPool(host='oauth.reddit.com', port=443): Read timed out. (read timeout=5)
+RedditExtendedWarrantyBot started
+Forbidden
+Forbidden
+Forbidden
+RequestException
+Forbidden
+RequestException
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Forbidden
+Traceback (most recent call last):
+  File "RedditExtendedWarrantyBot.py", line 18, in <module>
+    comments_post.reply(str(comments_post.author) + quote)
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/models/reddit/mixins/replyable.py", line 39, in reply
+    comments = self._reddit.post(API_PATH["comment"], data=data)
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 766, in post
+    path=path,
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/reddit.py", line 680, in _objectify_request
+    path=path,
+  File "/home/pi/.local/lib/python3.7/site-packages/praw/objector.py", line 165, in objectify
+    raise RedditAPIException(errors)
+praw.exceptions.RedditAPIException: THREAD_LOCKED: 'Kommentare wurden gesperrt.' on field 'parent'
+RedditExtendedWarrantyBot started
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>RedditExtendedWarrantyBot started
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
+<class 'Exception'>
